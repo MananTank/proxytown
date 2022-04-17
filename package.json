@@ -1,11 +1,11 @@
 {
   "name": "partytown-lite",
   "version": "1.0.0",
-  "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "serve",
-    "build": "echo This is a static template, there is no bundler or bundling involved!"
+    "dev": "rollup -c -w",
+    "serve": "serve fixtures",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,13 @@
   },
   "homepage": "https://github.com/codesandbox-app/static-template#readme",
   "devDependencies": {
-    "serve": "^11.2.0"
-  }
+    "rollup": "^2.70.1",
+    "rollup-plugin-ts": "^2.0.5",
+    "serve": "^11.3.2",
+    "typescript": "^4.6.2"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "description": ""
 }
