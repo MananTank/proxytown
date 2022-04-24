@@ -3,4 +3,3 @@
 
 npm run lint
 npm run prettier-staged
-npm run test
