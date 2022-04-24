@@ -22,6 +22,7 @@ export function createMainThreadProxy(
   if (MrefId in proxyMemo) return proxyMemo[MrefId]
 
   // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const $M$: MainThreadProxy = type === 'function' ? function () {} : {}
   $M$.__MrefId__ = MrefId
   $M$.__parent__ = parentProxy

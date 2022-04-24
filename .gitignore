@@ -1,7 +1,9 @@
 node_modules
 .DS_store
-fixtures/proxytown
-dist
 Icon?
 docs
-fixtures
+
+# dist
+dist/proxytown/*.js
+dist/index.html
+dist/tests
