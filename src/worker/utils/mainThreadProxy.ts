@@ -82,7 +82,7 @@ export function createMainThreadProxy(
       return evaluate(operation, parentProxy)
     },
 
-    ownKeys(target) {
+    ownKeys() {
       const operation: Operations.Keys = {
         __OP__: 'Keys',
         objId: MrefId
@@ -92,7 +92,7 @@ export function createMainThreadProxy(
       return keys
     },
 
-    getOwnPropertyDescriptor(target, prop) {
+    getOwnPropertyDescriptor() {
       return {
         enumerable: true,
         configurable: true
