@@ -1,6 +1,6 @@
 import typescript from 'rollup-plugin-ts';
 
-const distFolder = './fixtures/proxytown';
+const distFolder = './dist/proxytown';
 
 export default [
 	{

@@ -1,31 +1,41 @@
 {
-  "name": "partytown-lite",
-  "version": "1.0.0",
-  "main": "index.html",
+  "name": "proxytown",
+  "version": "0.0.2",
+  "main": "dist/proxytown/main.js",
   "scripts": {
-    "dev": "rollup -c -w",
-    "serve": "serve fixtures",
-    "build": "rollup -c"
+    "start": "rollup -c -w",
+    "serve": "serve dist",
+    "build": "rollup -c && node scripts/build.js",
+    "lint": "eslint \"**/*.ts\" --fix",
+    "prettier": "prettier --write \"**/*.ts\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codesandbox-app/static-template.git"
+    "url": "git+https://github.com/MananTank/proxytown"
   },
-  "keywords": [],
+  "keywords": [
+    "partytown",
+    "proxytown",
+    "thirdy-party"
+  ],
   "author": "Ives van Hoorne",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codesandbox-app/static-template/issues"
+    "url": "https://github.com/MananTank/proxytown/issues"
   },
-  "homepage": "https://github.com/codesandbox-app/static-template#readme",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^8.14.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "prettier": "^2.6.2",
     "rollup": "^2.70.1",
     "rollup-plugin-ts": "^2.0.5",
     "serve": "^11.3.2",
     "typescript": "^4.6.2"
   },
-  "directories": {
-    "lib": "lib"
-  },
-  "description": ""
+  "description": "Alternate Implementation of Partytown Library with cross thread global support"
 }
