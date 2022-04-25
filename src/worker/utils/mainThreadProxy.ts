@@ -1,4 +1,5 @@
-import { $$type, Operations } from '../../types'
+import { Operations } from '../../operations'
+import { $$type } from '../../types'
 import { proxyMemo } from '../worker'
 import { toSharabletoMain } from './convert'
 import { evaluate, performInMainThread } from './evaluate'

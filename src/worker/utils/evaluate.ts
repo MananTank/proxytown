@@ -1,5 +1,5 @@
+import { Operation } from '../../operations'
 import { EVAL } from '../../shared'
-import { Operation } from '../../types'
 import { toUsableInWorker } from './convert'
 import { MainThreadProxy } from './mainThreadProxy'
 

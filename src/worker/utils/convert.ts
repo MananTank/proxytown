@@ -1,5 +1,6 @@
+import { Operations } from '../../operations'
 import { $typeof, isMref, isNotSharable, isWref } from '../../shared'
-import { NonSharable, Operations, SharableToMain } from '../../types'
+import { NonSharable, SharableToMain } from '../../types'
 import { workerRefs } from '../worker'
 import { createMainThreadProxy, MainThreadProxy } from './mainThreadProxy'
 import { isMainProxy } from './typeCheck'

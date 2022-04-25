@@ -1,4 +1,4 @@
-import { MessageTypes } from '../../types'
+import { MessageTypes } from '../../messages'
 import { createMainThreadProxy, MainThreadProxy } from './mainThreadProxy'
 
 export function setupWorker(message: MessageTypes.Setup) {
@@ -28,5 +28,6 @@ export function setupWorker(message: MessageTypes.Setup) {
     })
   })
 
+  // import all proxytown scripts
   importScripts(...scriptSrcs)
 }

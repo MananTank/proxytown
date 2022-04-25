@@ -1,8 +1,15 @@
 import { $proxytown } from '../proxytown'
-import { convertToWorkerScript } from './convertToWorkerScript'
+import { convertToWorkerScript } from './convert'
 import { isHTMLScriptElement } from './typeCheck'
 
-export function useRef(id: number) {
+/**
+ * always use a main thread ref via this method so that
+ * to intercept script injections
+ *
+ * if a disconnected script is referenced in reference, convert it to a worker script
+ * so that it's code executes in a worker thread
+ */
+export function useMref(id: number) {
   const value = $proxytown.Mrefs[id]
 
   if (

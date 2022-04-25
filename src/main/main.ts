@@ -1,12 +1,20 @@
-import { MessageTypes, Operation } from '../types'
+import { MessageTypes } from '../messages'
+import { Operation } from '../operations'
+import { ProxytownConfig } from '../types'
 import { $proxytown } from './proxytown'
-import { convertToWorkerScript } from './utils/convertToWorkerScript'
-import { createMref } from './utils/createMref'
+import {
+  convertToWorkerScript,
+  createMref,
+  toSharableToWorker
+} from './utils/convert'
 import { debug } from './utils/debug'
 import { evaluate } from './utils/evaluate'
-import { toSharableToWorker } from './utils/toSharableToWorker'
+import { postMessageToWorker } from './utils/postMessageToWorker'
 import { isOperation } from './utils/typeCheck'
 
+/**
+ * initialize proxytown
+ */
 async function init() {
   // get proxytown scripts
   const partyScripts = parentWindow.document.querySelectorAll(
@@ -81,7 +89,7 @@ async function init() {
     windowKeys: Object.keys(parentWindow)
   }
 
-  worker.postMessage(setupMessage)
+  postMessageToWorker(setupMessage)
 }
 
 // this code runs inside the proxytown iframe
@@ -89,11 +97,7 @@ async function init() {
 const parentWindow = window.parent
 
 // @ts-ignore
-const proxytown = parentWindow.proxytown as
-  | undefined
-  | {
-      debug?: string[]
-    }
+const proxytown = parentWindow.proxytown as ProxytownConfig
 
 // @ts-ignore - make this global for debugging
 parentWindow.$proxytown = $proxytown

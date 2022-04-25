@@ -1,4 +1,6 @@
-import { $Proxytown, MessageTypes } from '../types'
+import { MessageTypes } from '../messages'
+import { $Proxytown } from '../types'
+import { postMessageToWorker } from './utils/postMessageToWorker'
 
 function importScript(url: string) {
   const message: MessageTypes.ImportScript = {
@@ -6,7 +8,7 @@ function importScript(url: string) {
     url
   }
 
-  $proxytown.worker.postMessage(message)
+  postMessageToWorker(message)
 }
 
 export const $proxytown: $Proxytown = {
@@ -15,7 +17,6 @@ export const $proxytown: $Proxytown = {
   importScript,
   // @ts-ignore
   worker: null,
-  // eval: evalCode,
   options: {
     debug: new Set()
   },

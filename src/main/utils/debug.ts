@@ -1,5 +1,8 @@
 import { $proxytown } from '../proxytown'
 
+/**
+ * prettier debug logs
+ */
 export function debug(...args: any[]) {
   if ($proxytown.options.debug) {
     console.debug(

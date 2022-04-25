@@ -1,20 +1,26 @@
-import { isMref, isObject } from '../../shared'
+import { isMref } from '../../shared'
 import { isOperation } from './typeCheck'
-import { useRef } from './useRef'
+import { useMref } from './useMref'
 import { workerProxy } from './workerThreadProxy'
 
+/**
+ * evaluate the value in main thread
+ * if the value is a Mref, return the value of Mref
+ * if the value is an operation, perform the operation in main thread and return the return value of operation
+ * else - return the value as is
+ */
 export function evaluate(x: any): any {
-  if (!isObject(x)) return x
+  // main thread ref
+  if (isMref(x)) return useMref(x.MrefId)
 
-  if (isMref(x)) return useRef(x.MrefId)
-
+  // operation
   if (isOperation(x)) {
     switch (x.__OP__) {
       case 'MethodCall': {
         const { args, objId, methodId } = x
         const argValues = args.map((arg) => evaluate(arg))
-        const obj = useRef(objId)
-        const method = useRef(methodId)
+        const obj = useMref(objId)
+        const method = useMref(methodId)
 
         if (x.newKeyword) {
           return new method.apply(obj, argValues)
@@ -25,7 +31,7 @@ export function evaluate(x: any): any {
 
       case 'FunctionCall': {
         const argValues = x.args.map((arg) => evaluate(arg))
-        const fn = useRef(x.fnId)
+        const fn = useMref(x.fnId)
         if (x.newKeyword) {
           return new fn(...argValues)
         } else {
@@ -35,14 +41,14 @@ export function evaluate(x: any): any {
 
       case 'Get': {
         const { objId, key } = x
-        const target = useRef(objId)
+        const target = useMref(objId)
         const value = Reflect.get(target, evaluate(key))
         return value
       }
 
       case 'Set': {
         const { objId, key, value } = x
-        const target = useRef(objId)
+        const target = useMref(objId)
         return Reflect.set(target, evaluate(key), evaluate(value))
       }
 
@@ -51,12 +57,12 @@ export function evaluate(x: any): any {
       }
 
       case 'Has': {
-        const value = useRef(x.objId)
+        const value = useMref(x.objId)
         return Reflect.has(value, evaluate(x.key))
       }
 
       case 'Keys': {
-        const value = useRef(x.objId)
+        const value = useMref(x.objId)
         return Object.keys(value)
       }
 
@@ -66,5 +72,6 @@ export function evaluate(x: any): any {
     }
   }
 
+  // other
   return x
 }

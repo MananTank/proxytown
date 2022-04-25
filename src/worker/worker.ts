@@ -1,5 +1,5 @@
 /// <reference lib="WebWorker" />
-import { MessageType } from '../types'
+import { MessageType } from '../messages'
 import { toUsableInWorker } from './utils/convert'
 import { getPathTarget } from './utils/getPathTarget'
 import { MainThreadProxy } from './utils/mainThreadProxy'

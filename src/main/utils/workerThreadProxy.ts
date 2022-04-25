@@ -1,13 +1,14 @@
-import { MessageTypes } from '../../types'
-import { $proxytown } from '../proxytown'
-import { toSharableToWorker } from './toSharableToWorker'
-
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const $w$: WorkerProxy = function () {}
+import { MessageTypes } from '../../messages'
+import { toSharableToWorker } from './convert'
+import { postMessageToWorker } from './postMessageToWorker'
 
 type WorkerProxy = Function
 
+const $w$: WorkerProxy = function () {}
+
+/**
+ * create a proxy for a worker object so that we can intercept get, set and apply operations on it
+ */
 export function workerProxy(
   WrefId: number,
   path: (string | number | symbol)[] = []
@@ -18,18 +19,18 @@ export function workerProxy(
     },
 
     set(_target, key, value) {
-      const setInWorkerMessage: MessageTypes.WorkerSet = {
+      const msg: MessageTypes.WorkerSet = {
         type: 'WorkerSet',
         WrefId,
         path: [...path, key].map(toSharableToWorker),
         value: toSharableToWorker(value)
       }
 
-      $proxytown.worker.postMessage(setInWorkerMessage)
+      postMessageToWorker(msg)
       return true
     },
 
-    apply(target, thisArg, args) {
+    apply(_target, _thisArg, args) {
       const msg: MessageTypes.WorkerFnCall = {
         type: 'WorkerFnCall',
         WrefId,
@@ -37,7 +38,7 @@ export function workerProxy(
         args: args.map(toSharableToWorker)
       }
 
-      $proxytown.worker.postMessage(msg)
+      postMessageToWorker(msg)
     }
   })
 

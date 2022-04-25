@@ -1,7 +1,7 @@
 /// <reference lib="WebWorker" />
 
+import { Operation } from '../operations'
 import { EVAL } from '../shared'
-import { Operation } from '../types'
 
 export type {}
 declare const self: ServiceWorkerGlobalScope
