@@ -24,6 +24,9 @@
     "proxytown",
     "third-party"
   ],
+  "files": [
+    "dist/proxytown/*"
+  ],
   "author": "Ives van Hoorne",
   "license": "MIT",
   "bugs": {
