@@ -1,6 +1,10 @@
+import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-ts'
 
 const distFolder = './dist/proxytown'
+
+const isProd = process.env.NODE_ENV === 'production'
+const plugins = isProd ? [typescript(), terser()] : [typescript()]
 
 export default [
   {
@@ -10,7 +14,7 @@ export default [
       format: 'iife',
       name: 'proxytownMain'
     },
-    plugins: [typescript()]
+    plugins
   },
   {
     input: './src/worker/worker.ts',
@@ -19,11 +23,11 @@ export default [
       format: 'iife',
       name: 'proxytownWorker'
     },
-    plugins: [typescript()]
+    plugins
   },
   {
     input: './src/sw/sw.ts',
-    plugins: [typescript()],
+    plugins,
     output: {
       file: `${distFolder}/sw.js`,
       format: 'iife',

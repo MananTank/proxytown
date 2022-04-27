@@ -43,7 +43,7 @@ async function init() {
   }
 
   // get library location from iframe
-  const libraryLocation = location.href.slice(0, -1 * 'proxytown'.length)
+  const libraryLocation = location.href.split('/').slice(0, -1).join('/') + '/'
   // save library location in $proxytown
   $proxytown.lib = libraryLocation
 

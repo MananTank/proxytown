@@ -1,17 +1,19 @@
 {
   "name": "proxytown",
+  "description": "Alternate Implementation of Partytown Library with cross thread global support",
   "version": "0.0.2",
   "main": "dist/proxytown/main.js",
   "scripts": {
     "prettier-staged": "pretty-quick --staged",
     "start": "rollup -c -w",
     "serve": "serve dist",
-    "build": "rollup -c",
+    "build": "rollup -c --environment NODE_ENV:production",
     "lint": "eslint \"**/*.ts\" --fix",
     "prettier": "prettier --write \"**/*.ts\"",
     "prepare": "husky install",
     "type-check": "tsc --noEmit"
   },
+  "bin": "./bin.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MananTank/proxytown"
@@ -19,7 +21,7 @@
   "keywords": [
     "partytown",
     "proxytown",
-    "thirdy-party"
+    "third-party"
   ],
   "author": "Ives van Hoorne",
   "license": "MIT",
@@ -34,13 +36,14 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.1.0",
     "eslint-plugin-promise": "^6.0.0",
+    "fs-extra": "^10.1.0",
     "husky": "^7.0.4",
     "prettier": "^2.6.2",
     "pretty-quick": "^3.1.3",
     "rollup": "^2.70.1",
+    "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-ts": "^2.0.5",
     "serve": "^11.3.2",
     "typescript": "^4.6.2"
-  },
-  "description": "Alternate Implementation of Partytown Library with cross thread global support"
+  }
 }

@@ -20,5 +20,6 @@ export const $proxytown: $Proxytown = {
   options: {
     debug: new Set()
   },
+  // will be set based on there the iframe is
   lib: ''
 }
