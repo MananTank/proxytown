@@ -11,7 +11,8 @@
     "lint": "eslint \"**/*.ts\" --fix",
     "prettier": "prettier --write \"**/*.ts\"",
     "prepare": "husky install",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "publish-patch": "npm run build && npm version patch && npm publish --public"
   },
   "bin": "./bin.js",
   "repository": {
