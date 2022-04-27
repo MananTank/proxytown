@@ -7,9 +7,9 @@ Alternate Implementation of [partytown](https://github.com/BuilderIO/partytown) 
 ## Features
 
 - Run third party scripts in worker thread 🥳
-- Even though it's running in worker thread, these scripts can use DOM API and global variables defined in main thread
-- Any globals created in worker thread can also usable in main thread without any config
-- Scripts created and inserted by these party scripts also gets executed in worker thread
+- thirdy party scripts can still use DOM API and global variables defined in main thread automatically.
+- Any globals created in worker thread is also be usable in main thread automatically.
+- scripts created and inserted by thirdy party scripts gets executed in worker thread automatically.
 - Lightweight (6KB for all files combined)
 
 <br/>
@@ -24,16 +24,16 @@ Move this folder in your project, and use the proxytown iframe in your page
 <iframe hidden src="path/to/proxytown/proxytown.html"> </iframe>
 ```
 
-Set `type="text/proxytown"` on third party scripts that you wish to run in worker thread
+Set `type="text/proxytown"` on third party scripts that you wish to run in proxytown's worker thread
 
 ```html
 <script type="text/proxytown" src="path/to/third-party-script"></script>
 ```
 
-Checkout this [sandbox](https://7ebxo6.csb.app/) for example
+Checkout this [sandbox](https://codesandbox.io/s/7ebxo6?file=/index.html) for example
 
 <br/>
 
-## Not Production Ready Yet !
+## Not Production Ready !
 
-This is currently just a proof of concept is not well tested.
+It's still in development 🛠
