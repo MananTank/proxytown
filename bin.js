@@ -1,23 +1,31 @@
 #!/usr/bin/env node
 
 // copy the dist/proxytown folder to the current directory
-const fse = require('fs-extra')
+const fs = require('fs')
 const path = require('path')
 
-const srcDir = path.join(__dirname, './dist/proxytown')
-const destDir = path.join(__dirname, './proxytown')
-
-fse.copySync(
-  srcDir,
-  destDir,
-  {
-    overwrite: true
-  },
-  (err) => {
-    if (err) {
-      console.error(err)
-    } else {
-      console.log('success!')
-    }
+/**
+ * @param {string} src  source path
+ * @param {string} dest distination path
+ */
+var copyRecursiveSync = function (src, dest) {
+  var exists = fs.existsSync(src)
+  var stats = exists && fs.statSync(src)
+  var isDirectory = exists && stats.isDirectory()
+  if (isDirectory) {
+    fs.mkdirSync(dest)
+    fs.readdirSync(src).forEach((childItemName) => {
+      copyRecursiveSync(
+        path.join(src, childItemName),
+        path.join(dest, childItemName)
+      )
+    })
+  } else {
+    fs.copyFileSync(src, dest)
   }
+}
+
+copyRecursiveSync(
+  path.join(__dirname, './dist/proxytown'),
+  path.join(__dirname, './proxytown')
 )
