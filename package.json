@@ -1,7 +1,7 @@
 {
   "name": "proxytown",
   "description": "Alternate Implementation of Partytown Library with cross thread global support",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/proxytown/main.js",
   "scripts": {
     "prettier-staged": "pretty-quick --staged",
