@@ -1,10 +1,13 @@
+import banner from 'rollup-plugin-banner'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-ts'
 
 const distFolder = './dist/proxytown'
 
 const isProd = process.env.NODE_ENV === 'production'
-const plugins = isProd ? [typescript(), terser()] : [typescript()]
+const plugins = isProd
+  ? [typescript(), terser(), banner('proxytown v<%= pkg.version %>')]
+  : [typescript()]
 
 export default [
   {
