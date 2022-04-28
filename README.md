@@ -16,7 +16,9 @@ Alternate Implementation of [partytown](https://github.com/BuilderIO/partytown) 
 
 ## Setup
 
-Get the Proxytown folder from [here](https://kj1rqk.csb.app/) (Select either specific version or latest)
+Get the Proxytown folder from [proxytown-download.pages.dev](https://proxytown-download.pages.dev/)
+
+(specify either specific version or go for the latest)
 
 Move this folder in your project, and use the proxytown iframe in your page
 
