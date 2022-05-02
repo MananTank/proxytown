@@ -40,12 +40,6 @@ export namespace Operations {
     newKeyword: boolean
   }
 
-  export interface ConsoleCall {
-    __OP__: 'ConsoleCall'
-    args: any[]
-    method: string
-  }
-
   export interface FunctionCall {
     __OP__: 'FunctionCall'
     args: any[]
@@ -62,4 +56,3 @@ export type Operation =
   | Operations.MethodCall
   | Operations.Has
   | Operations.Keys
-  | Operations.ConsoleCall
