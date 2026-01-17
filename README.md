@@ -17,7 +17,7 @@ Run third-party scripts in the worker thread 🥳
 
 ## Setup
 
-Get the Proxytown folder from [proxytown-download.pages.dev](https://proxytown-download.pages.dev/)
+Get the Proxytown folder from [proxytown-download.vercel.app](https://proxytown-download.vercel.app/)
 
 (specify either a specific version or go for the latest)
 
